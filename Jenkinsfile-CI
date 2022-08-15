@@ -27,7 +27,7 @@ pipeline {
                    jdk "java"
                 }
            steps {
-               SonarApp()               
+               SonarApp(login)               
            }
         }
     }
