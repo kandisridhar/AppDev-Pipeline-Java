@@ -38,7 +38,7 @@ pipeline {
                    jdk "java"
                 }
            steps {
-               SonarApp("sqa_bca75cac5c885c8515d7d8c22f4ef7764a98770f")               
+               SonarApp(login)               
            }
         }
     }
