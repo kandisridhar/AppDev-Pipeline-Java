@@ -15,6 +15,7 @@ pipeline {
     }
     stage('Terraform Init') {
       steps {
+        bat label:'', script: 'echo %ARM_CLIENT_ID%'
         Infra()
       }
     }
