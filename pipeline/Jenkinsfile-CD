@@ -5,12 +5,21 @@ pipeline {
     azcon = credentials('azure-pasha')
   }
   stages {
-    stage('Terraform Init') {
+    stage('Infra Provisioning') {
       steps {
         Infra()
       }
     }
-   
+    stage('Store Public Ip') {
+      steps {
+       FetchPublicIp()
+      }
+    }
+    stage('Download Artifact Form Nexus') {
+      steps {
+        DownloadFromNexus()
+      }
+      }
     
   }
 }
