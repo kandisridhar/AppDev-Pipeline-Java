@@ -15,17 +15,17 @@ pipeline {
     }
     stage('Terraform Init') {
       steps {
-        Tf.init()
+        Tf.init
       }
     }
     stage('Terraform Plan') {
       steps {
-        Tf.plan()
+        Tf.plan
       }
     }
     stage('Terraform Apply') {
       steps {
-        Tf.apply()
+        Tf.apply
       }
     }
     
