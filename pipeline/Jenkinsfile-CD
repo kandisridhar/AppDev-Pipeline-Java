@@ -1,6 +1,6 @@
 @Library('shared-library') _
 pipeline {
-  agent java-linux
+  agent any
   environment {
     azcon = credentials('azure-pasha')
   }
