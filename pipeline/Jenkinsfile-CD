@@ -12,7 +12,7 @@ pipeline {
     }
     stage('Store Public Ip') {
       steps {
-       FetchPublicIp()
+       FetchPublicIP()
       }
     }
     stage('Download Artifact Form Nexus') {
