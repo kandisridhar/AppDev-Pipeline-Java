@@ -22,8 +22,3 @@ module "mysql" {
   source    = "./modules/mysql"
   
 }
-  
-output "public_ip" {
-  value = vm.azurerm_virtual_machine.main.public_ip_address
-}
-
