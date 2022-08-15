@@ -1,0 +1,38 @@
+@Library('shared-library') _
+pipeline {
+    agent any
+    
+    environment {
+       sonarlogin = credentials('sonar_token')
+       }
+    
+    
+    stages {
+      
+       stage('Maven Build') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               BuildApp()               
+           }
+           }
+        stage('Store war to Nexus') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               StoreToNexus()               
+           }
+           }
+        stage('Sonar Analysis') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               SonarApp(sonarlogin)               
+           }
+        }
+    }
+}  
+
