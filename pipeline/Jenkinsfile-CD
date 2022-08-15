@@ -1,38 +1,38 @@
 @Library('shared-library') _
 pipeline {
-    agent any
-    
-    environment {
-       sonarlogin = credentials('sonar_token')
-       }
-    
-    
-    stages {
-      
-       stage('Maven Build') {
-           tools {
-                   jdk "java"
-                }
-           steps {
-               BuildApp()               
-           }
-           }
-        stage('Store war to Nexus') {
-           tools {
-                   jdk "java"
-                }
-           steps {
-               StoreToNexus()               
-           }
-           }
-        stage('Sonar Analysis') {
-           tools {
-                   jdk "java"
-                }
-           steps {
-               SonarApp(sonarlogin)               
-           }
-        }
+  environment {
+    azcon = credentials('azure-pasha')
+    ARM_CLIENT_ID= $azcon_CLIENT_ID
+    ARM_CLIENT_SECRET= $azcon_CLIENT_SECRET
+    ARM_SUBSCRIPTION_ID= $azcon_SUBSCRIPTION_ID
+    ARM_TENANT_ID= $azcon_TENANT_ID
+  }
+  stages {
+    stage('Terraform Init') {
+      steps {
+        sh "${env.TERRAFORM_HOME}/terraform init -input=false"
+      }
     }
-}  
+    stage('Terraform Plan') {
+      steps {
+        sh "${env.TERRAFORM_HOME}/terraform plan -out=tfplan -input=false -var-file='dev.tfvars'"
+      }
+    }
+    stage('Terraform Apply') {
+      steps {
+        input 'Apply Plan'
+        sh "${env.TERRAFORM_HOME}/terraform apply -input=false tfplan"
+      }
+    }
+    stage('AWSpec Tests') {
+      steps {
+          sh '''#!/bin/bash -l
+bundle install --path ~/.gem
+bundle exec rake spec || true
+'''
 
+        junit(allowEmptyResults: true, testResults: '**/testResults/*.xml')
+      }
+    }
+  }
+}
