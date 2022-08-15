@@ -24,5 +24,5 @@ module "mysql" {
 }
   
 output "public_ip" {
-  value = vm.azurerm_public_ip.public_ip.ip_address
+  value = module.vm.azurerm_public_ip.public_ip.ip_address
 }
