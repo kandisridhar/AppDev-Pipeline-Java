@@ -7,6 +7,7 @@ pipeline {
   stages {
     stage('Configure Azure Credentials') {
       steps {
+        echo "My client id is $azcon_CLIENT_ID"
         bat label:'', script: 'set ARM_CLIENT_ID=$azcon_CLIENT_ID'
         bat label:'', script: 'set ARM_CLIENT_SECRET=$azcon_CLIENT_SECRET'
         bat label:'', script: 'set ARM_SUBSCRIPTION_ID=$azcon_SUBSCRIPTION_ID'
