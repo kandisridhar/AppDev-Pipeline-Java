@@ -14,28 +14,19 @@ pipeline {
     }
     stage('Terraform Init') {
       steps {
-        Terraform.init()
+        Terraform.init
       }
     }
     stage('Terraform Plan') {
       steps {
-        Terraform.plan()
+        Terraform.plan
       }
     }
     stage('Terraform Apply') {
       steps {
-        Terraform.Apply()
+        Terraform.apply
       }
     }
-    stage('Download Artifact') {
-      steps {
-        DownloadArtifact(url)
-    }
-    }
-     stage('Deply App to Tomcat') {
-      steps {
-        DeployApp()
-    }
-    }    
+    
   }
 }
