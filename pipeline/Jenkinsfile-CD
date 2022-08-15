@@ -6,10 +6,10 @@ pipeline {
   stages {
     stage('Configure Azure Credentials') {
       steps {
-        export ARM_CLIENT_ID=$azcon_CLIENT_ID
-        export ARM_CLIENT_SECRET=$azcon_CLIENT_SECRET
-        export ARM_SUBSCRIPTION_ID=$azcon_SUBSCRIPTION_ID
-        export ARM_TENANT_ID=$azcon_TENANT_ID
+        powershell label:'', script: """$Env:ARM_CLIENT_ID=$azcon_CLIENT_ID"""
+        powershell label:'', script: """$Env:ARM_CLIENT_SECRET=$azcon_CLIENT_SECRET"""
+        powershell label:'', script: """$Env:ARM_SUBSCRIPTION_ID=$azcon_SUBSCRIPTION_ID"""
+        powershell label:'', script: """$Env:ARM_TENANT_ID=$azcon_TENANT_ID"""
       }    
     }
     stage('Terraform Init') {
