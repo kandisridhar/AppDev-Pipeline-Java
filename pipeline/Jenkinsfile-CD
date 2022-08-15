@@ -7,10 +7,10 @@ pipeline {
   stages {
     stage('Configure Azure Credentials') {
       steps {
-        sh label:'', script: 'export ARM_CLIENT_ID=$azcon_CLIENT_ID'
-        sh label:'', script: 'export ARM_CLIENT_SECRET=$azcon_CLIENT_SECRET'
-        sh label:'', script: 'export ARM_SUBSCRIPTION_ID=$azcon_SUBSCRIPTION_ID'
-        sh label:'', script: 'export ARM_TENANT_ID=$azcon_TENANT_ID'
+        bat label:'', script: 'set ARM_CLIENT_ID=$azcon_CLIENT_ID'
+        bat label:'', script: 'set ARM_CLIENT_SECRET=$azcon_CLIENT_SECRET'
+        bat label:'', script: 'set ARM_SUBSCRIPTION_ID=$azcon_SUBSCRIPTION_ID'
+        bat label:'', script: 'set ARM_TENANT_ID=$azcon_TENANT_ID'
       }    
     }
     stage('Terraform Init') {
