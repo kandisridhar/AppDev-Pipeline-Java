@@ -44,8 +44,8 @@ resource "azurerm_mysql_database" "mysqlforjava" {
   collation           = "utf8_unicode_ci"
 }
 
-resource "azurerm_mysql_firewall_rule" "example" {
-  name                = "Allow Azure"
+resource "azurerm_mysql_firewall_rule" "mysqlforjava" {
+  name                = "AllowAzure"
   resource_group_name = "ranjith"
   server_name         = azurerm_mysql_server.mysqlforjava.name
   start_ip_address    = "0.0.0.0"
