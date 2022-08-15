@@ -3,7 +3,6 @@ pipeline {
     agent any
     
     environment {
-       login = "squ_95ccba7a25057e955a5ce8c8934db902c3104552"
        sonarlogin = credentials('sonar_token')
        }
     
@@ -26,14 +25,6 @@ pipeline {
                StoreToNexus()               
            }
            }
-        stage('test') {
-           tools {
-                   jdk "java"
-                }
-           steps {
-               test("arti")               
-           }
-        }
         stage('Sonar Analysis') {
            tools {
                    jdk "java"
