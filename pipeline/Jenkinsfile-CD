@@ -15,7 +15,7 @@ pipeline {
     }
     stage('Terraform Init') {
       steps {
-        Infra.init
+        Infra()
       }
     }
     stage('Terraform Plan') {
