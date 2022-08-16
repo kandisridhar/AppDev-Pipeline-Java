@@ -1,18 +1,18 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "=3.0.0"
-    }
-  }
-}
-
-# Configure the Microsoft Azure Provider
-provider "azurerm" {
-  skip_provider_registration = true
-  features {}
-}
-
+#terraform {
+#  required_providers {
+#    azurerm = {
+#      source  = "hashicorp/azurerm"
+#      version = "=3.0.0"
+#    }
+#  }
+#}
+#
+## Configure the Microsoft Azure Provider
+#provider "azurerm" {
+#  skip_provider_registration = true
+#  features {}
+#}
+#
 variable "prefix" {
   default = "arti"
 }
@@ -60,7 +60,7 @@ resource "azurerm_network_security_group" "main" {
     priority                   = 100
     direction                  = "Inbound"
     access                     = "Allow"
-    protocol                   = "Tcp"
+    protocol                   = "*"
     source_port_range          = "*"
     destination_port_range     = "*"
     source_address_prefix      = "*"
@@ -80,6 +80,8 @@ resource "azurerm_virtual_machine" "main" {
   network_interface_ids = [azurerm_network_interface.main.id]
   vm_size               = "Standard_DS1_v2"
   delete_os_disk_on_termination = "true"
+	
+
 
   # Uncomment this line to delete the OS disk automatically when deleting the VM
   # delete_os_disk_on_termination = true
@@ -129,7 +131,7 @@ resource "azurerm_virtual_machine_extension" "main" {
 
   settings = <<SETTINGS
   {
-    "commandToExecute": "sudo systemctl start tomcat"
+    "commandToExecute": "sudo systemctl start tomcat && sudo chmod -R 777 /opt/tomcat/9_37"
   }
 SETTINGS
 
@@ -138,6 +140,4 @@ SETTINGS
   }
 }
 
-output "public_ip" {
-  value = azurerm_public_ip.public_ip.ip_address
-}
+
