@@ -4,17 +4,18 @@ pipeline {
   environment {
     azcon = credentials('azure-pasha')
   }
-   stage('Download Artifact Form Nexus') {
-      steps {
-        DownloadFromNexus()
-      }
-      }
+   
    stages {
     stage('Infra Provisioning') {
       steps {
         Infra()
       }
     }
+    stage('Download Artifact Form Nexus') {
+      steps {
+        DownloadFromNexus()
+      }
+      }
     stage('Store Public Ip') {
       steps {
        FetchPublicIP()
