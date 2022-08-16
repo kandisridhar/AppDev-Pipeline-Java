@@ -1,32 +1,45 @@
 @Library('shared-library') _
 pipeline {
-  agent any
-  environment {
+   agent any
+   environment {
     azcon = credentials('azure-pasha')
-  }
+   }
+   def remote = [:]
+    remote.name = 'test'
+    remote.host = 'test.domain.com'
+    remote.user = 'root'
+    remote.password = 'password'
+    remote.allowAnyHosts = true
    
    stages {   
     
     stage('Infra Provisioning') {
       steps {
-        TerraformDestroy()
+        Infra()
       }
     }
+   
     stage('Store Public Ip') {
       steps {
        FetchPublicIP()
       }
     }
+    
     stage('Download Artifact Form Nexus') {
       steps {
         DownloadFromNexus()
       }
       }
-    stage('DeployToTomcat') {
-      steps {
-        DeployToTomcat()
+    stage('Remote SSH') {   
+      steps{'
+      sshPut remote: remote, from: 'LoginWebapp.sh', into: '/opt/tomcat/9_37/webapps'
       }
     }
+   // stage('DeployToTomcat') {
+    //  steps {
+    //    DeployToTomcat()
+  //    }
+  //  }
    
    
     
