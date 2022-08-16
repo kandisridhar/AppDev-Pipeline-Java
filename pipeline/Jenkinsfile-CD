@@ -5,10 +5,10 @@ pipeline {
     azcon = credentials('azure-pasha')
    }
    def remote = [:]
-    remote.name = 'test'
-    remote.host = 'test.domain.com'
-    remote.user = 'root'
-    remote.password = 'password'
+    remote.name = 'azurevm'
+    remote.host = ''
+    remote.user = 'arti'
+    remote.password = 'Arti123'
     remote.allowAnyHosts = true
    
    stages {   
