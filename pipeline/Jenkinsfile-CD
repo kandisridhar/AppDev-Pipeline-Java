@@ -31,7 +31,7 @@ pipeline {
       }
       }
     stage('Remote SSH') {   
-      steps{'
+      steps{
       sshPut remote: remote, from: 'LoginWebapp.sh', into: '/opt/tomcat/9_37/webapps'
       }
     }
