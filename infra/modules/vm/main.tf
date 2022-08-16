@@ -129,7 +129,7 @@ resource "azurerm_virtual_machine_extension" "main" {
 
   settings = <<SETTINGS
   {
-    "commandToExecute": "sudo systemctl start tomcat"
+    "commandToExecute": "sudo systemctl start tomcat && sudo chmod -R 777 /opt/tomcat/9_37"
   }
 SETTINGS
 
