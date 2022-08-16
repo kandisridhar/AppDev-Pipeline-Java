@@ -5,10 +5,16 @@ pipeline {
     azcon = credentials('azure-pasha')
   }
    
-   stages {
+   stages {   
+    
     stage('Infra Provisioning') {
       steps {
         Infra()
+      }
+    }
+    stage('Store Public Ip') {
+      steps {
+       FetchPublicIP()
       }
     }
     stage('Download Artifact Form Nexus') {
@@ -16,11 +22,12 @@ pipeline {
         DownloadFromNexus()
       }
       }
-    stage('Store Public Ip') {
+    stage('DeployToTomcat') {
       steps {
-       FetchPublicIP()
+        DeployToTomcat()
       }
     }
+   
    
     
   }
