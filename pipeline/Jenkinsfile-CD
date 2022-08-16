@@ -31,16 +31,12 @@ pipeline {
         DownloadFromNexus()
       }
       }
-    stage('Remote SSH') {   
+    stage('DeployToTomcat') {   
       steps{
       sshPut remote: remote, from: 'LoginWebApp.war', into: '/opt/tomcat/9_37/webapps'
       }
     }
-   // stage('DeployToTomcat') {
-    //  steps {
-    //    DeployToTomcat()
-  //    }
-  //  }
+ 
    
    
     
