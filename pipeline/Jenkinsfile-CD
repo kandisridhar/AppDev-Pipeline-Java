@@ -28,8 +28,6 @@ pipeline {
         DeployToTomcat(username, password)
        }
        }
-   
-   
-    
-  }
+       }
+    }
 }
