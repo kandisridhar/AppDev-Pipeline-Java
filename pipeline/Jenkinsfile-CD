@@ -8,12 +8,12 @@ pipeline {
   
    
    stages {   
-  //  
-  //  stage('Infra Provisioning') {
-  //    steps {
-  //      Infra()
-  //    }
-  //  }
+   
+   stage('Infra Provisioning') {
+     steps {
+       TerraformDestroy()
+     }
+   }
    
     stage('Store Public Ip') {
       steps {
