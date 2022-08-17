@@ -1,14 +1,11 @@
 @Library('shared-library') _
-//def remote = [:]
-//    remote.name = 'azurevm'
-//    remote.host = '40.85.162.228'
-//    remote.user = 'arti'
-//    remote.password = 'Arti123'
-//    remote.allowAnyHosts = true
+
 pipeline {
    agent any
    environment {
     azcon = credentials('azure-pasha')
+    user = credentials('vm-user')
+    passwd = credentials('vm-passwd')
    }
   
    
@@ -33,8 +30,7 @@ pipeline {
       }
     stage('DeployToTomcat') {   
       steps{
-        DeployToTomcat()
-     // sshPut remote: remote, from: 'LoginWebApp.war', into: '/opt/tomcat/9_37/webapps'
+        DeployToTomcat(user, passwd)
       }
     }
  
