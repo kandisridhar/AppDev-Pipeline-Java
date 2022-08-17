@@ -4,8 +4,6 @@ pipeline {
    agent any
    environment {
     azcon = credentials('azure-pasha')
-    user = credentials('vm-user')
-    passwd = credentials('vm-passwd')
    }
   
    
@@ -30,7 +28,11 @@ pipeline {
       }
     stage('DeployToTomcat') {   
       steps{
-        DeployToTomcat(user, passwd)
+       withCredentials([usernamePassword(credentialsId: 'vm-creds', passwordVariable: 'password', usernameVariable: 'username')]) {
+        DeployToTomcat(username, password)
+    some block
+}
+       
       }
     }
  
