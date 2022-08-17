@@ -30,7 +30,7 @@ pipeline {
       steps{
        withCredentials([usernamePassword(credentialsId: 'vm-creds', passwordVariable: 'password', usernameVariable: 'username')]) {
         DeployToTomcat(username, password)
-    some block
+
 }
        
       }
