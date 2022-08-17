@@ -9,7 +9,7 @@ pipeline {
     
     stage('Infra Provisioning') {
       steps {
-        TerraformDestroy()
+        Infra()
       }
     }
     stage('Store Public Ip') {
