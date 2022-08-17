@@ -12,7 +12,7 @@ pipeline {
    }
   
    
-  // stages {   
+   stages {   
   //  
   //  stage('Infra Provisioning') {
   //    steps {
@@ -40,5 +40,5 @@ pipeline {
  
    
    
-    
+  }  
   }
