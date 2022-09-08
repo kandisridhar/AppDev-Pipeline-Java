@@ -9,7 +9,13 @@ pipeline {
     
     stage('Infra Provisioning') {
       steps {
-        TerraformDestroy()
+        Infra()
+      }
+    }
+    
+    stage('FetchPublicIP') {
+      steps {
+        FetchPublicIP()
       }
     }
     
