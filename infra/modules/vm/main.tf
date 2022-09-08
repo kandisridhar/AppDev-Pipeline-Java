@@ -1,20 +1,5 @@
-#terraform {
-#  required_providers {
-#    azurerm = {
-#      source  = "hashicorp/azurerm"
-#      version = "=3.0.0"
-#    }
-#  }
-#}
-#
-## Configure the Microsoft Azure Provider
-#provider "azurerm" {
-#  skip_provider_registration = true
-#  features {}
-#}
-#
 variable "prefix" {
-  default = "arti"
+  default = "arti-test"
 }
 
 resource "azurerm_virtual_network" "main" {
@@ -32,7 +17,7 @@ resource "azurerm_subnet" "internal" {
 }
 
 resource "azurerm_public_ip" "public_ip" {
-  name                = "vm_public_ip"
+  name                = "${var.prefix}_public_ip"
   resource_group_name = "ranjith"
   location            = "eastus"
   allocation_method   = "Dynamic"
@@ -44,14 +29,14 @@ resource "azurerm_network_interface" "main" {
   resource_group_name = "ranjith"
 
   ip_configuration {
-    name                          = "testconfiguration1"
+    name                          = "testconfiguration2"
     subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
 	public_ip_address_id          = azurerm_public_ip.public_ip.id
   }
 }
 resource "azurerm_network_security_group" "main" {
-  name                = "arti_nsg"
+  name                = "${var.prefix}-nsg"
   location            = "eastus"
   resource_group_name = "ranjith"
 
@@ -102,13 +87,13 @@ resource "azurerm_virtual_machine" "main" {
     version   = "latest"
   }
   storage_os_disk {
-    name              = "artiosdisk1"
+    name              = "${var.prefix}-osdisk1"
     caching           = "ReadWrite"
     create_option     = "FromImage"
     managed_disk_type = "Standard_LRS"
   }
   os_profile {
-    computer_name  = "artimachine"
+    computer_name  = "${var.prefix}-machine"
     admin_username = "arti"
     admin_password = "Arti123"
   }
@@ -121,7 +106,7 @@ resource "azurerm_virtual_machine" "main" {
 }
 
 resource "azurerm_virtual_machine_extension" "main" {
-  name                 = "artimachine"
+  name                 = "${var.prefix}-machine"
   #location             = "eastus"
   #resource_group_name  = "ranjith"
   virtual_machine_id   = azurerm_virtual_machine.main.id
