@@ -120,24 +120,24 @@ resource "azurerm_virtual_machine" "main" {
   }
 }
 
-resource "azurerm_virtual_machine_extension" "main" {
-  name                 = "artimachine"
-  #location             = "eastus"
-  #resource_group_name  = "ranjith"
-  virtual_machine_id   =  azurerm_virtual_machine.main.id
-  publisher            = "Microsoft.Azure.Extensions"
-  type                 = "CustomScript"
-  type_handler_version = "2.0"
-
-  settings = <<SETTINGS
-  {
-    "commandToExecute": "sudo systemctl start tomcat && sudo chmod -R 777 /opt/tomcat/9_37"
-  }
-SETTINGS
-
-  tags =  {
-    environment = "staging"
-  }
-}
+#resource "azurerm_virtual_machine_extension" "main" {
+#  name                 = "artimachine"
+#  #location             = "eastus"
+#  #resource_group_name  = "ranjith"
+#  virtual_machine_id   =  azurerm_virtual_machine.main.id
+#  publisher            = "Microsoft.Azure.Extensions"
+#  type                 = "CustomScript"
+#  type_handler_version = "2.0"
+#
+#  settings = <<SETTINGS
+#  {
+#    "commandToExecute": "sudo systemctl start tomcat && sudo chmod -R 777 /opt/tomcat/9_37"
+#  }
+#SETTINGS
+#
+#  tags =  {
+#    environment = "staging"
+#  }
+#}
 
 
