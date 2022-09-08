@@ -122,9 +122,9 @@ resource "azurerm_virtual_machine" "main" {
 
 resource "azurerm_virtual_machine_extension" "main" {
   name                 = "artimachine"
-  location             = "eastus"
-  resource_group_name  = "ranjith"
-  virtual_machine_id   = azurerm_virtual_machine.main.id
+  #location             = "eastus"
+  #resource_group_name  = "ranjith"
+  virtual_machine_id   =  azurerm_virtual_machine.main.id
   publisher            = "Microsoft.Azure.Extensions"
   type                 = "CustomScript"
   type_handler_version = "2.0"
