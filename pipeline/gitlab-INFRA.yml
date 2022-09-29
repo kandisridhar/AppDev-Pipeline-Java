@@ -1,0 +1,31 @@
+variables:
+  PHASE: "destroy" 
+Infra-Provisioning:
+  stage: Infra-Provisioning
+  tags: 
+    - agent-linux
+  script:
+    - export ARM_CLIENT_ID="$CLIENT_ID"
+    - export ARM_CLIENT_SECRET="$CLIENT_SECRET"
+    - export ARM_SUBSCRIPTION_ID="$SUBSCRIPTION_ID"
+    - export ARM_TENANT_ID="$TENANT_ID"
+    - terraform -chdir=infra init -input=false
+    - terraform -chdir=infra plan -out=tfplan -input=false
+    - terraform -chdir=infra apply -input=false tfplan
+  only:
+    variables:
+     - $PHASE == "apply"
+
+Destroy-Infra:
+  stage:  Destroy-Infra
+  tags: 
+    - agent-linux
+  script:
+    - export ARM_CLIENT_ID="$CLIENT_ID"
+    - export ARM_CLIENT_SECRET="$CLIENT_SECRET"
+    - export ARM_SUBSCRIPTION_ID="$SUBSCRIPTION_ID"
+    - export ARM_TENANT_ID="$TENANT_ID"
+    - terraform -chdir=infra destroy
+  only:
+    variables:
+     - $PHASE == "destroy"

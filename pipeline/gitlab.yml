@@ -1,0 +1,19 @@
+ stages:
+   - Infra-Provisioning
+   - Destroy-Infra
+   - Build
+   - Sonar-Analysis
+   - StoreToNexus
+   - Fetch-PublicIp
+   - DownloadFromNexus
+   - Deploy
+   - Test
+
+   
+
+ include:
+  - project: '$CI_PROJECT_PATH'
+    file: 
+      - 'pipeline/gitlab-INFRA.yml'
+      - 'pipeline/gitlab-CI.yml'
+      - 'pipeline/gitlab-CD.yml'

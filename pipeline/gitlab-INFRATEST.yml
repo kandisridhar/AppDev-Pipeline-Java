@@ -1,0 +1,68 @@
+before_script:
+    - export ARM_CLIENT_ID="$CLIENT_ID"
+    - export ARM_CLIENT_SECRET="$CLIENT_SECRET"
+    - export ARM_SUBSCRIPTION_ID="$SUBSCRIPTION_ID"
+    - export ARM_TENANT_ID="$TENANT_ID"
+
+
+variables:
+  TF_ROOT: infra  # The relative path to the root directory of the Terraform project
+  TF_STATE_NAME: ${TF_STATE_NAME:-default}  # The name of the state file used by the GitLab Managed Terraform state backend
+  TF_ADDRESS: ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/terraform/state/java
+  PHASE: "destroy"
+
+cache:
+  key: "${TF_ROOT}"
+  paths:
+    - ${TF_ROOT}/.terraform/
+
+terraform:plan: &terraform_build
+  stage: terraform-plan
+  
+  image:
+   name: "$CI_TEMPLATE_REGISTRY_HOST/gitlab-org/terraform-images/stable:latest"
+  script:
+    - echo "${TF_ADDRESS}"
+    - cd "${TF_ROOT}"
+    - gitlab-terraform plan
+    - gitlab-terraform plan-json
+  resource_group: ${TF_STATE_NAME}
+  artifacts:
+    paths:
+      - ${TF_ROOT}/plan.cache
+    reports:
+      terraform: ${TF_ROOT}/plan.json
+  only:
+    variables:
+      - $PHASE == "apply"
+  
+
+terraform:apply: &terraform_deploy
+  stage: terraform-apply
+  
+  image:
+   name: "$CI_TEMPLATE_REGISTRY_HOST/gitlab-org/terraform-images/stable:latest"
+  script:
+    - cd "${TF_ROOT}"
+    - gitlab-terraform apply
+  resource_group: ${TF_STATE_NAME}
+  only:
+    variables:
+      - $PHASE == "apply"
+  
+
+terraform:destroy: &terraform_destroy
+  stage: terraform-destroy
+  
+  image:
+   name: "$CI_TEMPLATE_REGISTRY_HOST/gitlab-org/terraform-images/stable:latest"
+  script:
+    - cd "${TF_ROOT}"
+    - gitlab-terraform destroy
+  resource_group: ${TF_STATE_NAME}
+  only:
+    variables:
+      - $PHASE == "destroy"
+
+
+

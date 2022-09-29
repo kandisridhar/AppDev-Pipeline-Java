@@ -1,0 +1,35 @@
+stages:
+  - iac_validate
+  - iac_apply
+
+default:
+  image:
+    name: hashicorp/terraform:latest
+    entrypoint:
+      - /usr/bin/env
+      - "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+  before_script:
+    - export ARM_CLIENT_ID="$CLIENT_ID"
+    - export ARM_CLIENT_SECRET="$CLIENT_SECRET"
+    - export ARM_SUBSCRIPTION_ID="$SUBSCRIPTION_ID"
+    - export ARM_TENANT_ID="$TENANT_ID"
+    - terraform -chdir=infra init -input=false -backend-config="https:\//gitlab.com/api/v4//projects/${CI_PROJECT_ID}/terraform/state/java"
+  
+  cache:
+    key: terraform
+    paths:
+      - .terraform
+
+terraform_validate:
+  stage: iac_validate
+  script:
+    - terraform -chdir=infra validate
+
+terraform_plan_apply:
+  stage: iac_apply
+  script: 
+    - terraform -chdir=infra plan -out=tfplan -input=false
+    - terraform -chdir=infra apply -input=false tfplan
+  only:
+    refs:
+      - gitlab

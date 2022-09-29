@@ -18,7 +18,7 @@ variable "prefix" {
 }
 
 resource "azurerm_virtual_network" "main" {
-  name                = "${var.prefix}-network"
+  name                = "java-network"
   address_space       = ["10.0.0.0/16"]
   location            = "eastus"
   resource_group_name = "ranjith"
@@ -39,7 +39,7 @@ resource "azurerm_public_ip" "public_ip" {
 }
 
 resource "azurerm_network_interface" "main" {
-  name                = "${var.prefix}-nic"
+  name                = "java-nic"
   location            = "eastus"
   resource_group_name = "ranjith"
 

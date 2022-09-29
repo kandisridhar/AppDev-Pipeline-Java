@@ -1,0 +1,30 @@
+variables:
+    VARIABLES_FILE: ./output.txt
+
+
+FetchPublicIp:
+  stage: Fetch-PublicIp
+  tags: 
+    - agent-linux
+  script:
+    - az login --service-principal -u $CLIENT_ID -p $CLIENT_SECRET -t $TENANT_ID
+    - ip=$(az vm show -d -g ranjith -n arti-java-vm --query "publicIps" -o tsv)
+    - echo "export ip=$ip" > $VARIABLES_FILE
+  artifacts:
+    paths:
+      - $VARIABLES_FILE
+
+
+Deploy-War:
+  stage: Deploy
+  tags: 
+    - agent-linux
+  script:
+    - source $VARIABLES_FILE
+    - echo "Server ip - $ip"
+    - echo "Downloading war file from Nexus"
+    - curl -L -X GET "http://20.124.0.240:8081/service/rest/v1/search/assets/download?sort=version&repository=maven-releases&maven.groupId=com.javawebtutor&maven.artifactId=login&maven.extension=war" --output login.war
+    - echo "Copying the War file to Tomcat server"
+    - echo y | pscp -pw $vmpassword ./login.war $vmuser@$ip:/opt/tomcat/9_37/webapps/
+    - echo "Copied War file to Tomcat server"
+

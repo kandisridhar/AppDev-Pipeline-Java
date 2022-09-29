@@ -1,8 +1,17 @@
 terraform {
+
+   backend "artifactory" {
+    url      = "http://20.124.0.240:8081/repository/" 
+    repo     = "terraform" 
+    subpath  = "java"
+    username = "admin" 
+    password = "admin" 
+  }
+  
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "=3.0.0"
+     # version = "3.23.0"
     }
   }
 }
