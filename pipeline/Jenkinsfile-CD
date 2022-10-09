@@ -13,22 +13,17 @@ pipeline {
       }
     }
     
-    stage('FetchPublicIP') {
-      steps {
-        FetchPublicIP()
-      }
-    }
     
     stage('Download Artifact Form Nexus') {
       steps {
         DownloadFromNexus()
       }
       }
-    stage('DeployToTomcat') {   
+    stage('Deploy To WebApp') {   
       steps{
-        withCredentials([usernamePassword(credentialsId: 'vm-creds', passwordVariable: 'password', usernameVariable: 'username')]) {
-        DeployToTomcat(username, password)
-       }
+        
+        DeployToWebApp()
+       
        }
        }
     }

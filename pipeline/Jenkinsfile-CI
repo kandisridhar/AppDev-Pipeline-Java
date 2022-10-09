@@ -30,7 +30,8 @@ pipeline {
                    jdk "java"
                 }
            steps {
-               SonarApp(sonarlogin)               
+               SonarApp(sonarlogin)
+               cleanWs()               
            }
         }
     }

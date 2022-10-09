@@ -1,4 +1,14 @@
 terraform {
+
+
+  backend "artifactory" {
+    url      = "http://localhost:8081/repository/" 
+    repo     = "terraform" 
+    subpath  = "java"
+    username = "admin" 
+    password = "admin" 
+  }
+
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
@@ -13,8 +23,8 @@ provider "azurerm" {
   features {}
 }
 
-module "vm" {
-  source    = "./modules/vm"
+module "webapp" {
+  source    = "./modules/webapp"
   
 }
 
