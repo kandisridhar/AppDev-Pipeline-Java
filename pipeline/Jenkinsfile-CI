@@ -32,6 +32,7 @@ pipeline {
            steps {
                SonarApp(sonarlogin)               
            }
+           }
         stage('Clean Workspace') {
            tools {
                    jdk "java"
@@ -42,4 +43,3 @@ pipeline {
         }
     }
 }  
-
