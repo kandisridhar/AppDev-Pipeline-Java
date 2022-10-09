@@ -18,7 +18,7 @@
 resource "azurerm_mysql_server" "mysqlforjava" {
   name                = "artimysqljava"
   location            = "eastus"
-  resource_group_name = "ranjith"
+  resource_group_name = "javatomcat"
 
   administrator_login          = "arti"
   administrator_login_password = "A@Rt1CoR3!"
@@ -38,15 +38,16 @@ resource "azurerm_mysql_server" "mysqlforjava" {
 
 resource "azurerm_mysql_database" "mysqlforjava" {
   name                = "artiuser"
-  resource_group_name = "ranjith"
+  resource_group_name = "javatomcat"
   server_name         = azurerm_mysql_server.mysqlforjava.name
   charset             = "utf8"
   collation           = "utf8_unicode_ci"
+
 }
 
 resource "azurerm_mysql_firewall_rule" "mysqlforjava" {
   name                = "AllowAzure"
-  resource_group_name = "ranjith"
+  resource_group_name = "javatomcat"
   server_name         = azurerm_mysql_server.mysqlforjava.name
   start_ip_address    = "0.0.0.0"
   end_ip_address      = "0.0.0.0"

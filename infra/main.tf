@@ -21,12 +21,10 @@ provider "azurerm" {
   features {}
 }
 
-module "vm" {
-  source    = "./modules/vm"
-  
+module "webapp" {
+  source    = "./modules/webapp"
 }
 
 module "mysql" {
-  source    = "./modules/mysql"
-  
+  source    = "./modules/mysql"  
 }
