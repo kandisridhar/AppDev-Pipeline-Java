@@ -37,7 +37,7 @@ pipeline {
                    jdk "java"
                 }
            steps {
-               cleanws()              
+               cleanWs()              
            }
         }
     }
