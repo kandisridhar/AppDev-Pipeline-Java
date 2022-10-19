@@ -33,15 +33,13 @@ pipeline {
 //}
   //}
    // }
-   stage('Building Docker Image'){
+   
+   stage('Deploy To Tomcat Container') {
       steps {
-     sh "docker build -t javatomcat:${BUILD_NUMBER} ."
-  }
-  }
-   stage('Deploy To Tomcat COntainer') {
-      steps {
+      withCredentials([usernamePassword(credentialsId: 'dockervmjava', passwordVariable: 'password', usernameVariable: 'username')]) {
         DeployToTomcatContainer()
         cleanWs()
+        }
       }
       } 
   }  
