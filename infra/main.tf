@@ -2,9 +2,9 @@ terraform {
 
 
   backend "artifactory" {
-    url      = "http://localhost:8081/repository/" 
+    url      = "http://20.197.58.214:8081/repository/" 
     repo     = "terraform" 
-    subpath  = "java"
+    subpath  = "dockerjava"
     username = "admin" 
     password = "admin" 
   }
@@ -23,8 +23,8 @@ provider "azurerm" {
   features {}
 }
 
-module "webapp" {
-  source    = "./modules/webapp"
+module "dockervm" {
+  source    = "./modules/dockervm"
   
 }
 
