@@ -33,10 +33,14 @@ pipeline {
 //}
   //}
    // }
-   
-   stage('Deploy To WebApp') {
+   stage('Building Docker Image'){
       steps {
-        DeployToWebApp()
+     sh "docker build -t javatomcat:${BUILD_NUMBER} ."
+  }
+  }
+   stage('Deploy To Tomcat COntainer') {
+      steps {
+        DeployToTomcatContainer()
         cleanWs()
       }
       } 
