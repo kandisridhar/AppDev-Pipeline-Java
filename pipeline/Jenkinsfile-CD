@@ -12,6 +12,11 @@ pipeline {
         Infra()
       }
     }
+    stage('FetchPublicIp') {
+      steps {
+        FetchPublicIp()
+      }
+    }
     
     
     stage('Download Artifact Form Nexus') {
@@ -22,7 +27,10 @@ pipeline {
     stage('Deploy To WebApp') {   
       steps{
         
-        DeployToWebApp()
+       withCredentials([usernamePassword(credentialsId: 'dockervmjava', passwordVariable: 'password', usernameVariable: 'username')]) {
+        DeployToTomcatContainer(username, password)
+        cleanWs()
+        }
        
        }
        }
