@@ -15,11 +15,11 @@ pipeline {
      }
    }
    
-  //stage('Store Public Ip') {
-  //   steps {
-    //   FetchPublicIP()
-   //   }
-  //  }
+   stage('Store Public Ip') {
+     steps {
+       FetchPublicIP()
+     }
+    }
     
    stage('Download Artifact Form Nexus') {
       steps {
