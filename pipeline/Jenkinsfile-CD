@@ -37,7 +37,7 @@ pipeline {
    stage('Deploy To Tomcat Container') {
       steps {
       withCredentials([usernamePassword(credentialsId: 'dockervmjava', passwordVariable: 'password', usernameVariable: 'username')]) {
-        DeployToTomcatContainer()
+        DeployToTomcatContainer(username, password)
         cleanWs()
         }
       }
