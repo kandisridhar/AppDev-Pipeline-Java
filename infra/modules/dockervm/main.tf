@@ -90,12 +90,8 @@ resource "azurerm_virtual_machine" "main" {
   os_profile {
     computer_name  = "${var.prefix}-machine"
     admin_username = "docker"
-    #admin_password = "Credshel@240597"
+    admin_password = "Credshel@240597"
   }
-  admin_ssh_key {
-   username = "azureuser"
-   public_key = "---- BEGIN SSH2 PUBLIC KEY ----AAAAB3NzaC1yc2EAAAADAQABAAABAQDWt8Ndjt/ygzduF2Ii+AVnU1Q0NerxtUQZIdAJL81C+Hl3z31MEE3erCB/G+vKl4GhlpIvcVZBELxBRWD4emqMxW2qSZqCaNH6ChD+dONBWGmNG7iJSQMfWLVyYcAsB57WxxotFNKUmF3gH7aydJ5WJvWezonPVgCY/NBnDvW/6UYJzKiQJcm3S38flsU4gpNdwktw6uUAd4wDnneyWsIW/e25nuYUGUHemJa/F0DmEcfYvFEumK9ykulNYv3DroS9eSJNMHOFb3V9blMhx1oLOCwIC+jJuYCYClnXHcT7Ej1wG6AEi92XKvhhMqjc+9NtlyW3wuISa5Aa7H4X+VSn---- END SSH2 PUBLIC KEY ----"
-}
   os_profile_linux_config {
     disable_password_authentication = false
   }
