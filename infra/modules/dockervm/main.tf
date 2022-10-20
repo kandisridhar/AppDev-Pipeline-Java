@@ -79,7 +79,7 @@ resource "azurerm_virtual_machine" "main" {
     publisher = "zerto"
     offer     = "azure-vms-by-zerto"
     sku       = "ubuntu1804lts-python-docker-zerto"
-    version   = "1.0.0"
+    version   = "latest"
   }
   storage_os_disk {
     name              = "${var.prefix}-osdisk1"
