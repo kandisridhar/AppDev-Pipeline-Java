@@ -6,7 +6,7 @@
 	String lastName = request.getParameter("lastName"); 
 	String email = request.getParameter("email"); 
 	Class.forName ( "com.mysql.jdbc.Driver"); 
-	Connection con = DriverManager.getConnection("jdbc:mysql://artimysqljava.mysql.database.azure.com:3306/artiuser?useSSL=false&requireSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "arti@artimysqljava", "A@Rt1CoR3!");
+	Connection con = DriverManager.getConnection("jdbc:mysql://testdb1:3306/artiuser?useSSL=false&requireSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC", "testuser", "root");
 	Statement st = con.createStatement();
     Statement ct = con.createStatement();
 	
