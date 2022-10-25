@@ -1,4 +1,4 @@
-FROM tomcat:8.0-alpine
+FROM tomcat:9.0-jdk8-corretto 
 
 LABEL maintainer="ArtiP@hexaware.com"
 
