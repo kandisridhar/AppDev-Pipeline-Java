@@ -89,8 +89,8 @@ resource "azurerm_virtual_machine" "main" {
   }
   os_profile {
     computer_name  = "${var.prefix}-machine"
-    admin_username = "docker"
-    admin_password = "Docker@123456"
+    admin_username = "azuser"
+    admin_password = "Arti@12345678"
   }
   os_profile_linux_config {
     disable_password_authentication = false
