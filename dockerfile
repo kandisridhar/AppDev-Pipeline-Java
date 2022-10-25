@@ -2,7 +2,7 @@ FROM tomcat:8.0-alpine
 
 LABEL maintainer=”ArtiP@hexaware.com”
 
-ADD target/LoginWebApp.war /usr/local/tomcat/webapps/LoginWebApp.war
+ADD LoginWebApp.war /usr/local/tomcat/webapps/login.war
 
 EXPOSE 8080
 
