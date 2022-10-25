@@ -25,6 +25,6 @@ module "dockervm" {
   source    = "./modules/dockervm"
 }
 
-module "mysql" {
-  source    = "./modules/mysql"  
-}
+#module "mysql" {
+#  source    = "./modules/mysql"  
+3}
