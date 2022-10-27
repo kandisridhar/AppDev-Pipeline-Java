@@ -29,6 +29,8 @@ Manage Jenkins -> Configure System -> Global Pipeline Libraries -> Add -> gIve n
 
 Manage Jenkins -> Manage Credenials -> Add Credentials -> Create credentials for Azure Service Principal Connection , Create Credetials for nexus login, Create Credentials for Azure vm, Credentials for Sonar login 
 
+Make Sure the ID which you are providing in Jenkins for these above credentials should be same as the one in Jenkinsfile-CI and Jenkinsfile-CD files.
+
 ## Install Plugins
 
 Go to Jenkins -> Manage pLugins -> Search for SSH Pipeline Steps , Azure Crentials, Terraform and install it
@@ -42,6 +44,20 @@ Go to Jenkins -> Click on New Item -> Provide name "java-CI" -> choose pipeline 
 * java-CD - Infra Provisioning, Fetch Public IP of VM, Download Artifact Form Nexus, Deploy
 
 Go to Jenkins -> Click on New Item -> Provide name "java-CD" -> choose pipeline -> Create -> Provide the repo url and branch -> Choose pipeline script from SCM -> path as pipeline/Jenkinsfile-CD 
+
+## Modify Shared Library accordingly.
+
+* SonarApp.groovy - Provide the Url of your sonarqube instance. Dont change if your sonarqube is hotsed locally
+* FetchPublicIp.groovy - Provide the Resource Group Name and VM name as per your requirement.
+* DownloadFromNexus.groovy - Provide the nexus url as per your desired artifact.
+
+## Execute The pipeline
+
+Click on Build Now for the Pipeline java-CI
+
+Click on Build Now for the Pipeline java-CD
+
+Once completed. Browse http://ipadress/login
 
 
 
