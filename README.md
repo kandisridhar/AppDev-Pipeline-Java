@@ -2,15 +2,36 @@
 
 This is a simple demonstration project of login and register to showcase CICD of Infra provisiong of Azure VM with tomcat and Azure Mysql databse to deploy Java web application with mysql connection on a container.
 
-# Tools Used
+# Prerequistites
 
-Jenkins
-Nexus
-Sonarqube
-Terraform
-docker
+* Open an Azure Account 
+⦁	Install Java - [Download and Install - https://www.java.com/en/download/help/windows_manual_download.html]
+⦁	Install Maven - [Download - https://maven.apache.org/download.cgi, Install - https://maven.apache.org/install.html]
+⦁	Install Jenkins - [Downlload and Install - https://www.jenkins.io/doc/book/installing/windows/]
+⦁	Install Sonarqube - [Download and Install - https://docs.sonarqube.org/latest/setup/install-server/]
+⦁	Install Nexus Repository Manager - [Download - https://help.sonatype.com/repomanager3/product-information/download, Install - https://help.sonatype.com/repomanager3/installation-and-upgrades/installation-methods ]
+⦁	Install Azure CLI - [Download - https://aka.ms/installazurecliwindows]
+⦁	Install Git [Git bash included in package] - [Download and Install - https://git-scm.com/download/win]
+⦁	Install Terraform -[Download - https://www.terraform.io/downloads]
+
 
 # Step by Step Procedure
+
+## Configure Global Tool Configuration
+
+Manage Jenkins -> Global Tool Configuration -> Provide the tools location for JDK, Git, Terraform, Maven
+
+## Configure Shared Library in Jenkins
+
+Manage Jenkins -> Configure System -> Global Pipeline Libraries -> Add -> gIve name -> Give Url for the Shared Library (https://github.com/ranjitaws2020/java-shared-library.git) -> version as 'main'
+
+## Create Cresentials in Jenkins
+
+Manage Jenkins -> Manage Credenials -> Add Credentials -> Create credentials for Azure Service Principal Connection , Create Credetials for nexus login, Create Credentials for Azure vm, Credentials for Sonar login 
+
+## Install Plugins
+
+Go to Jenkins -> Manage pLugins -> Search for SSH Pipeline Steps , Azure Crentials, Terraform and install it
 
 ## Create Pipelines in Jenkins:
 
@@ -20,6 +41,7 @@ Go to Jenkins -> Click on New Item -> Provide name "java-CI" -> choose pipeline 
 
 * java-CD - Infra Provisioning, Fetch Public IP of VM, Download Artifact Form Nexus, Deploy
 
-Go to Jenkins -> Click on New Item -> Provide name "java-CD" -> choose pipeline -> Create -> Provide the repo url and branch -> Choose pipeline script from SCM -> path as pipeline/Jenkinsfile-CD   
+Go to Jenkins -> Click on New Item -> Provide name "java-CD" -> choose pipeline -> Create -> Provide the repo url and branch -> Choose pipeline script from SCM -> path as pipeline/Jenkinsfile-CD 
+
 
 
