@@ -25,7 +25,7 @@ Manage Jenkins -> Global Tool Configuration -> Provide the tools location for JD
 
 Manage Jenkins -> Configure System -> Global Pipeline Libraries -> Add -> gIve name -> Give Url for the Shared Library (https://github.com/ranjitaws2020/java-shared-library.git) -> version as 'main'
 
-## Create Cresentials in Jenkins
+## Create Credentials in Jenkins
 
 Manage Jenkins -> Manage Credenials -> Add Credentials -> Create credentials for Azure Service Principal Connection , Create Credetials for nexus login, Create Credentials for Azure vm, Credentials for Sonar login 
 
