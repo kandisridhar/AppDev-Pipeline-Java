@@ -5,11 +5,14 @@ This is a simple demonstration project of login and register to showcase CICD of
 # Tools Used
 
 Jenkins
-Jfrog
+Nexus
 Sonarqube
 Terraform
 docker
 
 # Step by Step Procedure
 
+Create Pipelines in Jenkins:
 
+* java-CI - Build, Sonar Analysis, Upload war to Nexus
+* java-CD - Infra Provisioning, Fetch Public IP of VM, Download Artifact Form Nexus, Deploy  
