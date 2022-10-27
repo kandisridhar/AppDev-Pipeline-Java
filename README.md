@@ -5,14 +5,14 @@ This is a simple demonstration project of login and register to showcase CICD of
 # Prerequistites
 
 * Open an Azure Account 
-⦁	Install Java - [Download and Install - https://www.java.com/en/download/help/windows_manual_download.html]
-⦁	Install Maven - [Download - https://maven.apache.org/download.cgi, Install - https://maven.apache.org/install.html]
-⦁	Install Jenkins - [Downlload and Install - https://www.jenkins.io/doc/book/installing/windows/]
-⦁	Install Sonarqube - [Download and Install - https://docs.sonarqube.org/latest/setup/install-server/]
-⦁	Install Nexus Repository Manager - [Download - https://help.sonatype.com/repomanager3/product-information/download, Install - https://help.sonatype.com/repomanager3/installation-and-upgrades/installation-methods ]
-⦁	Install Azure CLI - [Download - https://aka.ms/installazurecliwindows]
-⦁	Install Git [Git bash included in package] - [Download and Install - https://git-scm.com/download/win]
-⦁	Install Terraform -[Download - https://www.terraform.io/downloads]
+*	Install Java - [Download and Install - https://www.java.com/en/download/help/windows_manual_download.html]
+*	Install Maven - [Download - https://maven.apache.org/download.cgi, Install - https://maven.apache.org/install.html]
+*	Install Jenkins - [Downlload and Install - https://www.jenkins.io/doc/book/installing/windows/]
+*	Install Sonarqube - [Download and Install - https://docs.sonarqube.org/latest/setup/install-server/]
+*	Install Nexus Repository Manager - [Download - https://help.sonatype.com/repomanager3/product-information/download, Install - https://help.sonatype.com/repomanager3/installation-and-upgrades/installation-methods ]
+*	Install Azure CLI - [Download - https://aka.ms/installazurecliwindows]
+*	Install Git [Git bash included in package] - [Download and Install - https://git-scm.com/download/win]
+*	Install Terraform -[Download - https://www.terraform.io/downloads]
 
 
 # Step by Step Procedure
