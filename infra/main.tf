@@ -2,7 +2,7 @@ terraform {
 
 
   backend "artifactory" {
-    url      = "http://20.197.58.214:8081/repository/" 
+    url      = "http://localhost:8081/repository/" 
     repo     = "terraform" 
     subpath  = "dockerjava"
     username = "admin" 
