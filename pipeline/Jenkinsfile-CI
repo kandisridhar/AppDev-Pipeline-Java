@@ -54,9 +54,11 @@ pipeline {
                    jdk "java"
                 }
            steps {
+              withCredentials([usernamePassword(credentialsId: 'dockervmjava', passwordVariable: 'password', usernameVariable: 'username')]) {
                PushToDockerHub()
                cleanWs()               
            }
+        }
         }
     }
 }  
