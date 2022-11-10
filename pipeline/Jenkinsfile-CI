@@ -9,6 +9,14 @@ pipeline {
     
     stages {
       
+       stage('Infra Provisioning') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               Infra()               
+           }
+           }
        stage('Maven Build') {
            tools {
                    jdk "java"
@@ -30,7 +38,23 @@ pipeline {
                    jdk "java"
                 }
            steps {
-               SonarApp(sonarlogin)
+               SonarApp(sonarlogin)              
+           }
+        }
+        stage('FetchPublicIP') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               FetchPublicIP()               
+           }
+        }
+         stage('Push Image to Docker Hub') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               PushToDockerHub()
                cleanWs()               
            }
         }
