@@ -7,17 +7,11 @@ pipeline {
    
    stages {   
     
-    stage('Infra Provisioning') {
-      steps {
-        Infra()
-      }
-    }
     stage('FetchPublicIp') {
       steps {
         FetchPublicIP()
       }
     }
-    
     
     stage('Download Artifact Form Nexus') {
       steps {
