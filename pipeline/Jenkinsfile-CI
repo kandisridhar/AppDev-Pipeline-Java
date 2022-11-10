@@ -3,6 +3,7 @@ pipeline {
     agent any
     
     environment {
+       azcon = credentials('azure-pasha')
        sonarlogin = credentials('sonar_token')
        }
     
