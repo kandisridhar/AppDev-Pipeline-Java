@@ -6,19 +6,19 @@ resource "azurerm_virtual_network" "main" {
   name                = "${var.prefix}-network"
   address_space       = ["10.0.0.0/16"]
   location            = "eastus"
-  resource_group_name = "docker-group"
+  resource_group_name = "ranjith"
 }
 
 resource "azurerm_subnet" "internal" {
   name                 = "internal"
-  resource_group_name  = "docker-group"
+  resource_group_name  = "ranjith"
   virtual_network_name = azurerm_virtual_network.main.name
   address_prefixes     = ["10.0.2.0/24"]
 }
 
 resource "azurerm_public_ip" "public_ip" {
   name                = "${var.prefix}_public_ip"
-  resource_group_name = "docker-group"
+  resource_group_name = "ranjith"
   location            = "eastus"
   allocation_method   = "Dynamic"
 }
@@ -26,19 +26,19 @@ resource "azurerm_public_ip" "public_ip" {
 resource "azurerm_network_interface" "main" {
   name                = "${var.prefix}-nic"
   location            = "eastus"
-  resource_group_name = "docker-group"
+  resource_group_name = "ranjith"
 
   ip_configuration {
     name                          = "testconfiguration2"
     subnet_id                     = azurerm_subnet.internal.id
     private_ip_address_allocation = "Dynamic"
-	public_ip_address_id          = azurerm_public_ip.public_ip.id
+    public_ip_address_id          = azurerm_public_ip.public_ip.id
   }
 }
 resource "azurerm_network_security_group" "main" {
   name                = "${var.prefix}-nsg"
   location            = "eastus"
-  resource_group_name = "docker-group"
+  resource_group_name = "ranjith"
 
   security_rule {
     name                       = "allow_ssh_sg"
@@ -61,7 +61,7 @@ resource "azurerm_network_interface_security_group_association" "association" {
 resource "azurerm_virtual_machine" "main" {
   name                  = "${var.prefix}-java-vm"
   location              = "eastus"
-  resource_group_name   = "docker-group"
+  resource_group_name   = "ranjith"
   network_interface_ids = [azurerm_network_interface.main.id]
   vm_size               = "Standard_DS1_V2"
   delete_os_disk_on_termination = "true"
