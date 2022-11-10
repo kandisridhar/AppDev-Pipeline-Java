@@ -57,6 +57,11 @@ resource "azurerm_network_interface_security_group_association" "association" {
   network_interface_id      = azurerm_network_interface.main.id
   network_security_group_id = azurerm_network_security_group.main.id
 }
+resource "azurerm_marketplace_agreement" "main" {
+  publisher = "zerto"
+  offer     = "azure-vms-by-zerto"
+  plan      = "hourly"
+}
 
 resource "azurerm_virtual_machine" "main" {
   name                  = "${var.prefix}-java-vm"
