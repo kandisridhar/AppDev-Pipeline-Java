@@ -13,11 +13,6 @@ pipeline {
       }
     }
     
-    stage('Download Artifact Form Nexus') {
-      steps {
-        DownloadFromNexus()
-      }
-      }
     stage('Deploy To Tomcat Container') {   
       steps{
         
