@@ -56,7 +56,7 @@ pipeline {
                 }
            steps {
               withCredentials([usernamePassword(credentialsId: 'dockervmjava', passwordVariable: 'password', usernameVariable: 'username')]) {
-               PushToDockerHub()
+               PushToDockerHub(username, password)
                cleanWs()               
            }
         }
