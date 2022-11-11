@@ -50,7 +50,7 @@ pipeline {
                FetchPublicIP()               
            }
         }
-         stage('FetchPublicIP') {
+         stage('Download From Nexus') {
            tools {
                    jdk "java"
                 }
