@@ -50,6 +50,14 @@ pipeline {
                FetchPublicIP()               
            }
         }
+         stage('FetchPublicIP') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               DownloadFromNexus()               
+           }
+        }
          stage('Push Image to Docker Hub') {
            tools {
                    jdk "java"
