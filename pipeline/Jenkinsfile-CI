@@ -3,13 +3,22 @@ pipeline {
     agent any
     
     environment {
+       azcon = credentials('azure-pasha')
        sonarlogin = credentials('sonar_token')
        }
     
     
     stages {
       
-       stage('Maven Build') {
+        stage('Infra Provisioning') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               Infra()               
+           }
+           }
+        stage('Maven Build') {
            tools {
                    jdk "java"
                 }
@@ -17,6 +26,14 @@ pipeline {
                BuildApp()               
            }
            }
+        stage('Sonar Analysis') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               SonarApp(sonarlogin)              
+           }
+        }   
         stage('Store war to Nexus') {
            tools {
                    jdk "java"
@@ -25,21 +42,33 @@ pipeline {
                StoreToNexus()               
            }
            }
-        stage('Sonar Analysis') {
+        
+        stage('FetchPublicIP') {
            tools {
                    jdk "java"
                 }
            steps {
-               SonarApp(sonarlogin)               
+               FetchPublicIP()               
            }
-           }
-        stage('Clean Workspace') {
+        }
+        stage('Download From Nexus') {
            tools {
                    jdk "java"
                 }
            steps {
-               cleanWs()              
+               DownloadFromNexus()               
            }
+        }
+        stage('Push Image to Docker Hub') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+              withCredentials([usernamePassword(credentialsId: 'dockervmjava', passwordVariable: 'password', usernameVariable: 'username')]) {
+               PushImageToDockerHub(username, password)
+               cleanWs()               
+           }
+        }
         }
     }
 }  
