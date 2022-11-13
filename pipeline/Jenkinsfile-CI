@@ -15,7 +15,7 @@ pipeline {
                    jdk "java"
                 }
            steps {
-               Infra()               
+               TerraformDestroy()               
            }
            }
         stage('Maven Build') {
