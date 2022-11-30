@@ -25,14 +25,7 @@ pipeline {
                StoreToNexus()               
            }
            }
-        stage('Sonar Analysis') {
-           tools {
-                   jdk "java"
-                }
-           steps {
-               SonarApp(sonarlogin)               
-           }
-        }
+        
     }
 }  
 
