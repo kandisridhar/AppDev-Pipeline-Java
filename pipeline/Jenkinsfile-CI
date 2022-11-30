@@ -3,7 +3,7 @@ pipeline {
     agent any
     
     environment {
-       sonarlogin = credentials('sonar_token')
+       sonarlogin = credentials('sonar_token1')
        }
     
     
