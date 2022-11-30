@@ -2,7 +2,7 @@
 pipeline {
   agent any
   environment {
-    azcon = credentials('azure-pasha')
+    azcon = credentials('azure-creds')
   }
    
    stages {   
