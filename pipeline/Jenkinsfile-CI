@@ -5,8 +5,7 @@ pipeline {
     environment {
        sonarlogin = credentials('sonar_token')
        }
-    
-    
+        
     stages {
       
        stage('Maven Build') {
@@ -25,7 +24,15 @@ pipeline {
                StoreToNexus()               
            }
            }
-        
+        stage('Sonar Analysis') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               SonarApp(sonarlogin)               
+           }
+        }
+
     }
 }  
 
