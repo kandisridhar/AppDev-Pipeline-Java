@@ -2,7 +2,7 @@
 pipeline {
   agent any
   environment {
-    azcon = credentials('azure-creds')
+    azcon = credentials('azure-pasha')
     nexuslogin = credentials('nexus-ID')
   }
    
