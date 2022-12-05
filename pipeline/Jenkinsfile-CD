@@ -3,7 +3,6 @@ pipeline {
   agent any
   environment {
     azcon = credentials('azure-pasha')
-    nexuslogin = credentials('nexus-ID')
   }
    
    stages {   
@@ -21,7 +20,7 @@ pipeline {
     }
     stage('Download Artifact From Nexus') {
       steps {
-        DownloadFromNexus(nexuslogin)
+        DownloadFromNexus()
       }
       }
     stage('DeployToTomcat') {   
