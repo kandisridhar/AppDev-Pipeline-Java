@@ -9,7 +9,7 @@ pipeline {
     
     stage('Infra Provisioning') {
       steps {
-        Infra()
+        TerraformDestroy()
       }
     }
     
