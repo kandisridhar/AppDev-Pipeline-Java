@@ -6,7 +6,7 @@ terraform {
     repo     = "terraform" 
     subpath  = "dockerjava"
     username = "admin" 
-    password = "admin" 
+    password = "Hexaware@12345" 
   }
 
   required_providers {
