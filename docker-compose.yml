@@ -24,7 +24,7 @@ services:
    web:
     depends_on:
       - db
-    image: doc67/javasampletomcat
+    image: doc67/javasampletomcat:${TAG}
     ports:
       - '80:8080'
     environment:
