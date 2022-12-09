@@ -15,60 +15,60 @@ pipeline {
                    jdk "java"
                 }
            steps {
-               TerraformDestroy()               
+               Infra()               
            }
            }
-   //  stage('Maven Build') {
-   //      tools {
-   //              jdk "java"
-   //           }
-   //      steps {
-   //          BuildApp()               
-   //      }
-   //      }
-   //   stage('Store war to Nexus') {
-   //      tools {
-   //              jdk "java"
-   //           }
-   //      steps {
-   //          StoreToNexus()               
-   //      }
-   //      }
-   //     stage('Sonar Analysis') {
-   //        tools {
-   //                jdk "java"
-   //             }
-   //        steps {
-   //            SonarApp(sonarlogin)              
-   //        }
-   //     }
-   //     stage('FetchPublicIP') {
-   //        tools {
-   //                jdk "java"
-   //             }
-   //        steps {
-   //            FetchPublicIPDocker()               
-   //        }
-   //     }
-   //      stage('Download From Nexus') {
-   //        tools {
-   //                jdk "java"
-   //             }
-   //        steps {
-   //            DownloadFromNexus()               
-   //        }
-   //     }
-   //      stage('Push Image to Docker Hub') {
-   //        tools {
-   //                jdk "java"
-   //             }
-   //        steps {
-   //           withCredentials([usernamePassword(credentialsId: 'dockervmjava', passwordVariable: 'password', usernameVariable: 'username')]) {
-   //            PushToDockerHub(username, password)
-   //            cleanWs()               
-   //        }
-   //     }
-   //     }
+     stage('Maven Build') {
+         tools {
+                 jdk "java"
+              }
+         steps {
+             BuildApp()               
+         }
+         }
+      stage('Store war to Nexus') {
+         tools {
+                 jdk "java"
+              }
+         steps {
+             StoreToNexus()               
+         }
+         }
+        stage('Sonar Analysis') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               SonarApp(sonarlogin)              
+           }
+        }
+        stage('FetchPublicIP') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               FetchPublicIPDocker()               
+           }
+        }
+         stage('Download From Nexus') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               DownloadFromNexus()               
+           }
+        }
+         stage('Push Image to Docker Hub') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+              withCredentials([usernamePassword(credentialsId: 'dockervmjava', passwordVariable: 'password', usernameVariable: 'username')]) {
+               PushToDockerHub(username, password)
+               cleanWs()               
+           }
+        }
+        }
     }
 }  
 
