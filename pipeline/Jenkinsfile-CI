@@ -10,7 +10,7 @@ pipeline {
     
     stages {
       
-       stage('Infra Provisioning') {
+      stage('Infra Provisioning') {
            tools {
                    jdk "java"
                 }
@@ -18,7 +18,7 @@ pipeline {
                Infra()               
            }
            }
-     stage('Maven Build') {
+      stage('Maven Build') {
          tools {
                  jdk "java"
               }
@@ -34,7 +34,7 @@ pipeline {
              StoreToNexus()               
          }
          }
-        stage('Sonar Analysis') {
+      stage('Sonar Analysis') {
            tools {
                    jdk "java"
                 }
@@ -42,7 +42,7 @@ pipeline {
                SonarApp(sonarlogin)              
            }
         }
-        stage('FetchPublicIP') {
+      stage('FetchPublicIP') {
            tools {
                    jdk "java"
                 }
@@ -50,7 +50,7 @@ pipeline {
                FetchPublicIPDocker()               
            }
         }
-         stage('Download From Nexus') {
+      stage('Download From Nexus') {
            tools {
                    jdk "java"
                 }
@@ -58,7 +58,7 @@ pipeline {
                DownloadFromNexus()               
            }
         }
-         stage('Push Image to Docker Hub') {
+      stage('Push Image to Docker Hub') {
            tools {
                    jdk "java"
                 }
