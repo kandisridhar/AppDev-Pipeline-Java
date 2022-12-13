@@ -8,11 +8,25 @@ pipeline {
     stages {
       
       stage('Infra Provisioning') {
+           when {
+                expression { params.tfaction == "Infra" }
+            }
            tools {
                    jdk "java"
                 }
            steps {
-               params.tfaction()               
+               Infra()               
+           }
+           }
+      stage('Infra Provisioning') {
+           when {
+                expression { params.tfaction == "TerraformDestroy" }
+            }
+           tools {
+                   jdk "java"
+                }
+           steps {
+               TerraformDestroy()               
            }
            }
            }
