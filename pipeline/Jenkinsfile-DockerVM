@@ -12,7 +12,7 @@ pipeline {
                    jdk "java"
                 }
            steps {
-               Infra()               
+               params.tfaction()               
            }
            }
            }
