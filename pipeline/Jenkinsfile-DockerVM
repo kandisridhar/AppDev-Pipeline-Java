@@ -1,0 +1,20 @@
+@Library('shared-library') _
+pipeline {
+    agent any
+    
+    environment {
+       azcon = credentials('azure-pasha')
+       }    
+    stages {
+      
+      stage('Infra Provisioning') {
+           tools {
+                   jdk "java"
+                }
+           steps {
+               Infra()               
+           }
+           }
+           }
+           }
+        
