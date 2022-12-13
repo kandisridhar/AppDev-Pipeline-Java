@@ -18,7 +18,7 @@ pipeline {
                Infra()               
            }
            }
-      stage('Infra Provisioning') {
+      stage('Infra Destroy') {
            when {
                 expression { params.tfaction == "TerraformDestroy" }
             }
