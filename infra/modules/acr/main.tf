@@ -1,7 +1,3 @@
-resource "azurerm_resource_group" "main" {
-  name     = "ranjith"
-  location = "East US"
-}
 
 resource "azurerm_container_registry" "main" {
   name                = "articontainer01"
