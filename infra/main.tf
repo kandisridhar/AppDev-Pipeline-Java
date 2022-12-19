@@ -28,7 +28,7 @@ module "dockervm" {
   
 }
 
-#module "mysql" {
-#  source    = "./modules/mysql"
+module "acr" {
+  source    = "./modules/acr"
   
-#}
+}
