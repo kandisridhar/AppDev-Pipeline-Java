@@ -10,7 +10,7 @@ resource "azurerm_container_registry" "main" {
   sku                 = "Premium"
   admin_enabled       = false
   georeplications {
-    location                = "East US"
+    location                = "West US"
     zone_redundancy_enabled = true
     tags                    = {}
   }
