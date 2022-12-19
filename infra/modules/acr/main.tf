@@ -4,7 +4,7 @@ resource "azurerm_resource_group" "main" {
 }
 
 resource "azurerm_container_registry" "acr" {
-  name                = "arti-container"
+  name                = "articontainer-01"
   resource_group_name = azurerm_resource_group.main.name
   location            = azurerm_resource_group.main.location
   sku                 = "Premium"
