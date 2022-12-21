@@ -4,7 +4,7 @@ resource "azurerm_container_registry" "main" {
   resource_group_name = "ranjith"
   location            = "East US"
   sku                 = "Premium"
-  admin_enabled       = false
+  admin_enabled       = true
   
  
 }
