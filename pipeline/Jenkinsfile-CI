@@ -58,13 +58,13 @@ pipeline {
                DownloadFromNexus()               
            }
         }
-      stage('Push Image to Docker Hub') {
+      stage('Push Image to Acr') {
            tools {
                    jdk "java"
                 }
            steps {
               withCredentials([usernamePassword(credentialsId: 'dockervmjava', passwordVariable: 'password', usernameVariable: 'username')]) {
-               PushToDockerHub(username, password)
+               PushToAcr(username, password)
                cleanWs()               
            }
         }
