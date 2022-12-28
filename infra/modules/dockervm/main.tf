@@ -63,7 +63,7 @@ resource "azurerm_virtual_machine" "main" {
   location              = "eastus"
   resource_group_name   = "ranjith"
   network_interface_ids = [azurerm_network_interface.main.id]
-  vm_size               = "Standard_DS1_V2"
+  vm_size               = "Standard_D2S_V3"
   delete_os_disk_on_termination = "true"
 
   # Uncomment this line to delete the data disks automatically when deleting the VM

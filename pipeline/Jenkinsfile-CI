@@ -1,4 +1,4 @@
-@Library('shared-library') _
+@Library('java-shared-library') _
 pipeline {
     agent any
     
@@ -10,31 +10,31 @@ pipeline {
     
     stages {
       
-       stage('Infra Provisioning') {
+      stage('Infra Provisioning') {
            tools {
                    jdk "java"
                 }
            steps {
-               Infra()               
+               TerraformDestroy()               
            }
            }
-       stage('Maven Build') {
-           tools {
-                   jdk "java"
-                }
-           steps {
-               BuildApp()               
-           }
-           }
-        stage('Store war to Nexus') {
-           tools {
-                   jdk "java"
-                }
-           steps {
-               StoreToNexus()               
-           }
-           }
-        stage('Sonar Analysis') {
+      stage('Maven Build') {
+         tools {
+                 jdk "java"
+              }
+         steps {
+             BuildApp()               
+         }
+         }
+      stage('Store war to Nexus') {
+         tools {
+                 jdk "java"
+              }
+         steps {
+             StoreToNexus()               
+         }
+         }
+      stage('Sonar Analysis') {
            tools {
                    jdk "java"
                 }
@@ -42,15 +42,15 @@ pipeline {
                SonarApp(sonarlogin)              
            }
         }
-        stage('FetchPublicIP') {
+      stage('FetchPublicIP') {
            tools {
                    jdk "java"
                 }
            steps {
-               FetchPublicIP()               
+               FetchPublicIPDocker()               
            }
         }
-         stage('Download From Nexus') {
+      stage('Download From Nexus') {
            tools {
                    jdk "java"
                 }
@@ -58,7 +58,7 @@ pipeline {
                DownloadFromNexus()               
            }
         }
-         stage('Push Image to Docker Hub') {
+      stage('Push Image to Docker Hub') {
            tools {
                    jdk "java"
                 }
