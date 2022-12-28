@@ -3,10 +3,10 @@ terraform {
 
   backend "artifactory" {
     url      = "http://localhost:8081/repository/" 
-    repo     = "terraform" 
+    repo     = "terraform-docker" 
     subpath  = "dockerjava"
-    username = "admin" 
-    password = "Hexaware@12345" 
+    username = "sridhar" 
+    password = "sridhar123" 
   }
 
   required_providers {
