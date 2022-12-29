@@ -24,7 +24,7 @@ services:
    web:
     depends_on:
       - db
-    image: kandisridhar/javasampletomcat:${TAG}
+    image: kandisridhar/javasampletomcat:9
     ports:
       - '80:8080'
     environment:
